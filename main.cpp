@@ -10,7 +10,7 @@ Fungsi reshape(GLsizei width, GLsizei height): Fungsi ini menangani perubahan uk
 Fungsi main(): Ini adalah titik awal eksekusi program, di mana GLUT diinisialisasi, fungsi callback ditetapkan, dan loop pengolahan acara utama dimulai.
 */
  
-#include <windows.h>  // for MS Windows
+#include <windows.h> 
 #include <GL/glut.h>  // GLUT, include glu.h and gl.h
  
 /* Global variables */
@@ -29,8 +29,7 @@ void initGL() {
    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);  // Nice perspective corrections
 }
  
-/* Handler for window-repaint event. Called back when the window first appears and
-   whenever the window needs to be re-painted. */
+
 void display() {
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
    glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
@@ -88,7 +87,7 @@ void display() {
    // Render a pyramid consists of 4 triangles
    glLoadIdentity();                  // Reset the model-view matrix
    glTranslatef(-1.5f, 0.0f, -6.0f);  // Move left and into the screen
-   glRotatef(anglePyramid, 1.0f, 1.0f, 0.0f);  // Rotate about the (1,1,0)-axis [NEW]
+   glRotatef(anglePyramid, 1.0f, 1.0f, 0.0f);  // Rotate about the (1,1,0)-axis
  
    glBegin(GL_TRIANGLES);           // Begin drawing the pyramid with 4 triangles
       // Front
@@ -126,19 +125,18 @@ void display() {
  
    glutSwapBuffers();  // Swap the front and back frame buffers (double buffering)
  
-   // Update the rotational angle after each refresh [NEW]
+   // Update the rotational angle after each refresh 
    anglePyramid += 0.2f;
    angleCube -= 0.15f;
 }
  
-/* Called back when timer expired [NEW] */
+
 void timer(int value) {
    glutPostRedisplay();      // Post re-paint request to activate display()
    glutTimerFunc(refreshMills, timer, 0); // next timer call milliseconds later
 }
  
-/* Handler for window re-size event. Called back when the window first appears and
-   whenever the window is re-sized with its new width and height */
+
 void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integer
    // Compute aspect ratio of the new window
    if (height == 0) height = 1;                // To prevent divide by 0
@@ -154,7 +152,7 @@ void reshape(GLsizei width, GLsizei height) {  // GLsizei for non-negative integ
    gluPerspective(45.0f, aspect, 0.1f, 100.0f);
 }
  
-/* Main function: GLUT runs as a console application starting at main() */
+ 
 int main(int argc, char** argv) {
    glutInit(&argc, argv);            // Initialize GLUT
    glutInitDisplayMode(GLUT_DOUBLE); // Enable double buffered mode
